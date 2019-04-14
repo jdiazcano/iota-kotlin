@@ -1,0 +1,6 @@
+[submodule "buildSrc"]
+	path = buildSrc
+	url = git@github.com:jdiazcano/buildSrc.git
+[submodule "a"]
+	path = a
+	url = git@github.com:jdiazcano/buildSrc.git
