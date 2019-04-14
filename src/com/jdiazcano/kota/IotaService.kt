@@ -9,19 +9,26 @@ import io.ktor.client.features.json.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.HttpMethod
+import io.ktor.http.URLProtocol
 
-data class IotaServiceConfiguration(
-        val host: String,
-        val port: Int
-)
+interface IotaServiceConfiguration {
+    val host: String get() = "localhost"
+    val port: Int get() = 14265
+    val protocol: URLProtocol get() = URLProtocol.HTTP
+}
+
+class IotaServiceConfigImpl: IotaServiceConfiguration
 
 class IotaService(
-        val config: IotaServiceConfiguration
+        val config: IotaServiceConfiguration = IotaServiceConfigImpl()
 ) {
     private val client = HttpClient(CIO) {
         defaultRequest {
-            host = config.host
-            port = config.port
+            url {
+                protocol = config.protocol
+                host = config.host
+                port = config.port
+            }
             method = HttpMethod.Post
 
             header("Content-Type", "application/json")

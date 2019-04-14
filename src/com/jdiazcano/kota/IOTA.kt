@@ -5,7 +5,8 @@ import kotlinx.coroutines.runBlocking
 
 @KtorExperimentalAPI
 fun main() {
-    val service = IotaService(IotaServiceConfiguration("localhost", 14265))
+
+    val service = IotaService()
 
     runBlocking {
         val response = service.getNeighbors()

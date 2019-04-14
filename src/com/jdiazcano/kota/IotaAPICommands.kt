@@ -1,10 +1,5 @@
 package com.jdiazcano.kota
 
-/**
- * IOTA's node command list
- */
-
-
 inline class IotaAPICommand(val name: String) {
     companion object {
         val GET_NODE_INFO = IotaAPICommand("getNodeInfo")

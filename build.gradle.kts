@@ -26,7 +26,9 @@ dependencies {
     compile(Libraries.ktor.client.cio)
     compile(Libraries.ktor.client.gson)
     compile(Libraries.ktor.client.loggingjvm)
+    compile(Libraries.bouncycastle)
 
+    testCompile(Libraries.kotlintest)
 
 }
 
