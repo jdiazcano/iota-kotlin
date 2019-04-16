@@ -10,7 +10,7 @@ import com.jdiazcano.kota.pow.create
 
 fun IntArray.subseed(index: Int): IntArray {
     return clone().apply {
-        for (i in 0..index) {
+        for (i in 0 until index) {
             inc()
         }
     }
@@ -30,7 +30,7 @@ fun TritArray.key(index: Int, securityLevel: SecurityLevel): TritArray {
     val buffer = IntArray(seed.size)
     var offset = 0
 
-    for (sec in 0..securityLevel) {
+    for (sec in 0 until securityLevel) {
         for (i in 0 until 27) {
             curl.squeeze(buffer, 0, seed.size)
             System.arraycopy(buffer, 0, key, offset, HASH_LENGTH)

@@ -6,6 +6,7 @@ import org.bouncycastle.jcajce.provider.digest.Keccak;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+// Copied from iota-java for now!
 public class Kerl extends JCurl {
 
     private static final int HASH_LENGTH = 243;

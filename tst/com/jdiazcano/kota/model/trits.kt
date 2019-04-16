@@ -32,4 +32,14 @@ class TritsTest: StringSpec({
         }
     }
 
+    "increasing a trit array" {
+        val array = tritArrayOf(0, 1, 1, -1)
+        array.inc()
+        array shouldBe tritArrayOf(1, 1, 1, -1)
+        array.inc()
+        array shouldBe tritArrayOf(-1, -1, -1, 0)
+        array.inc()
+        array shouldBe tritArrayOf(0, -1, -1, 0)
+    }
+
 })
