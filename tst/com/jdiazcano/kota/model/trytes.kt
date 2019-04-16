@@ -1,13 +1,11 @@
-package com.jdiazcano.kota.utils
+package com.jdiazcano.kota.model
 
-import com.jdiazcano.kota.model.fromTryes
-import com.jdiazcano.kota.model.toTrytes
 import io.kotlintest.properties.assertAll
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldThrow
 import io.kotlintest.specs.StringSpec
 
-class ConverterTest: StringSpec({
+class TryteTest: StringSpec({
 
     "converts string to trytes" {
         "Z".toTrytes() shouldBe "IC"
