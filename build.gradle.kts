@@ -48,6 +48,10 @@ java.sourceSets["test"].java {
     setSrcDirs(listOf("tst"))
 }
 
+java.sourceSets["test"].resources {
+    setSrcDirs(listOf("tstres"))
+}
+
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }

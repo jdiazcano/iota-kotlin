@@ -17,10 +17,10 @@ interface IotaServiceConfiguration {
     val protocol: URLProtocol get() = URLProtocol.HTTP
 }
 
-class IotaServiceConfigImpl: IotaServiceConfiguration
+class DefaultIotaServiceConfig: IotaServiceConfiguration
 
 class IotaService(
-        val config: IotaServiceConfiguration = IotaServiceConfigImpl()
+        val config: IotaServiceConfiguration = DefaultIotaServiceConfig()
 ) {
     private val client = HttpClient(CIO) {
         defaultRequest {

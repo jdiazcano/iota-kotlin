@@ -1,11 +1,12 @@
 package com.jdiazcano.kota.pow;
 
-import com.jdiazcano.kota.utils.Converter;
+import com.jdiazcano.kota.model.Converter;
 import com.jdiazcano.kota.utils.Pair;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
+// TODO To be translated
 /**
  * (c) 2016 Come-from-Beyond
  *
@@ -246,6 +247,7 @@ public class JCurl implements ICurl {
      */
     @Override
     public ICurl clone() {
+        // TODO This should return the same instance, not always CURLP81
         return new JCurl(SpongeMode.CURLP81);
     }
 }

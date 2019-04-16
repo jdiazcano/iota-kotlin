@@ -1,4 +1,6 @@
-package com.jdiazcano.kota.utils
+package com.jdiazcano.kota.model
+
+import com.jdiazcano.kota.utils.TRYTE_ALPHABET
 
 object Converter {
     const val HIGH_INTEGER_BITS = -0x1

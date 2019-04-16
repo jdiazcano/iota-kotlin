@@ -4,7 +4,7 @@ data class Input(
         val address: String,
         val balance: Long,
         val keyIndex: Int,
-        val security: Int
+        val security: SecurityLevel
 )
 
 data class Inputs(
@@ -39,7 +39,6 @@ data class Transfer(
 
 data class Transaction(
         val hash: String,
-        val signatureFragments: String,
         val address: String,
         val value: Long,
         val obsoleteTag: String,
@@ -52,7 +51,14 @@ data class Transaction(
         val nonce: String,
         val persistence: Boolean,
         val attachmentTimestamp: Long,
-        val tag: String,
+        val attachmentTag: String,
         val attachmentTimestampLowerBound: Long,
-        val attachmentTimestampUpperBound: Long
+        val attachmentTimestampUpperBound: Long,
+        val signatureMessageFragment: String
+)
+
+data class Bundle(
+        val transactions: List<Transaction>,
+        val length: Int
+
 )

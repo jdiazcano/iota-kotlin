@@ -1,5 +1,7 @@
 package com.jdiazcano.kota.utils
 
+import com.jdiazcano.kota.model.fromTryes
+import com.jdiazcano.kota.model.toTrytes
 import io.kotlintest.properties.assertAll
 import io.kotlintest.shouldBe
 import io.kotlintest.shouldThrow
