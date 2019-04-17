@@ -1,6 +1,7 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-import java.net.URI;
+import java.net.URI
 
 plugins {
     java
@@ -28,7 +29,8 @@ dependencies {
     compile(Libraries.ktor.client.loggingjvm)
     compile(Libraries.bouncycastle)
 
-    testCompile(Libraries.kotlintest)
+    testCompile(Libraries.kotlintest.core)
+    testCompile(Libraries.kotlintest.junitrunner)
 
 }
 
@@ -54,6 +56,19 @@ java.sourceSets["test"].resources {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+
+    testLogging {
+        // set options for log level LIFECYCLE
+        events = setOf(FAILED, PASSED, SKIPPED, STANDARD_OUT)
+        exceptionFormat = TestExceptionFormat.FULL
+        showExceptions = true
+        showCauses = true
+        showStackTraces = true
+    }
 }
 
 

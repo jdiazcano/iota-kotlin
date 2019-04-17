@@ -77,3 +77,14 @@ fun String.fromTryes(): String {
         }
     }
 }
+
+fun TritArray.toTrytes(offset: Int = 0, tritsSize: Int = size): String {
+    return buildString {
+        for (i in 0 until ((tritsSize + 3 - 1) / 3)) {
+            val offsetIndex = this@toTrytes[offset + i * 3] + this@toTrytes[offset + i * 3 + 1] * 3 + this@toTrytes[offset + i * 3 + 2] * 9
+            val index = if (offsetIndex < 0) offsetIndex + TRYTE_ALPHABET.length else offsetIndex
+
+            append(TRYTE_ALPHABET[index])
+        }
+    }
+}

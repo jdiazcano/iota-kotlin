@@ -46,6 +46,11 @@ public class Kerl extends JCurl {
         return sum;
     }
 
+    @Override
+    public JCurl reset(boolean pair) {
+        return super.reset(pair);
+    }
+
     public static byte[] convertTritsToBytes(final int[] trits) {
         if (trits.length != Kerl.HASH_LENGTH) {
             throw new RuntimeException("Input trits length must be " + Kerl.HASH_LENGTH + "in length");
