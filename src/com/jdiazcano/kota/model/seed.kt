@@ -1,7 +1,6 @@
 package com.jdiazcano.kota.model
 
 import com.jdiazcano.kota.utils.SEED_LENGTH_MAX
-import com.jdiazcano.kota.utils.isTrytes
 
 typealias Seed = String
 

@@ -2,7 +2,6 @@ package com.jdiazcano.kota.model
 
 import com.jdiazcano.kota.utils.ADDRESS_LENGTH_WITHOUT_CHECKSUM
 import com.jdiazcano.kota.utils.ADDRESS_LENGTH_WITH_CHECKSUM
-import com.jdiazcano.kota.utils.isTrytes
 
 typealias Hash = String
 

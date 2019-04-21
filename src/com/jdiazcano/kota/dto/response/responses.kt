@@ -1,5 +1,6 @@
 package com.jdiazcano.kota.dto.response
 
+import com.jdiazcano.kota.model.Bundle
 import com.jdiazcano.kota.model.Input
 import com.jdiazcano.kota.model.Neighbor
 import com.jdiazcano.kota.model.Transaction
@@ -33,10 +34,15 @@ data class FindTransactionResponse(
         val hashes: List<String>
 ): Response
 
+data class GetNewAddressResponse(
+        override val duration: Long,
+        val addresses: List<String>
+): Response
+
 data class GetAccountDataResponse(
         override val duration: Long,
         val addresses: List<String>,
-//        val transferBundle: List<Bundle>,
+        val transferBundle: List<Bundle>,
         val inputs: List<Input>,
         val balance: Long
 ): Response

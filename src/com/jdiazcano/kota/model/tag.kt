@@ -1,7 +1,6 @@
 package com.jdiazcano.kota.model
 
 import com.jdiazcano.kota.utils.TAG_LENGTH
-import com.jdiazcano.kota.utils.isTrytes
 
 inline class Tag(val trytes: String)
 

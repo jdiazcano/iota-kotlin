@@ -1,5 +1,7 @@
 package com.jdiazcano.kota.utils
 
-fun String.isTrytes(length: Int = this.length): Boolean {
-    return matches(("^[A-Z9]{" + (if (length == 0) "0," else length) + "}$").toRegex())
+fun Int.timesDo(operation: () -> Unit) {
+    for (i in 0 until this) {
+        operation()
+    }
 }

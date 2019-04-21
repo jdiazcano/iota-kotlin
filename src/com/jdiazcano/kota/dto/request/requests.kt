@@ -22,10 +22,10 @@ data class IotaCheckConsistencyRequest(val tails: List<String>): IotaCommandRequ
 }
 
 data class IotaFindTransactionsRequest(
-        val bundles: List<String>,
         val addresses: List<String>,
-        val tags: List<String>,
-        val approvees: List<String>
+        val bundles: List<String>? = null,
+        val tags: List<String>? = null,
+        val approvees: List<String>? = null
 ): IotaCommandRequest {
     override val command = IotaAPICommand.FIND_TRANSACTIONS
 }

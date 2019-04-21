@@ -4,7 +4,7 @@ import com.jdiazcano.kota.model.*
 import com.jdiazcano.kota.pow.ICurl
 import com.jdiazcano.kota.pow.JCurl.HASH_LENGTH
 
-fun ICurl.generateAddress(seed: Seed, level: SecurityLevel, index: Int, checksum: Boolean): String {
+fun ICurl.generateAddress(seed: Seed, level: SecurityLevel, index: Int, checksum: Boolean): Address {
     val trits = seed.toTrits()
     val key = trits.key(index, level)
     val digests = digest(key, level)
@@ -18,16 +18,20 @@ fun ICurl.generateAddress(seed: Seed, level: SecurityLevel, index: Int, checksum
         addChecksum(addressString)
     } else {
         addressString
-    }
+    }.toAddress()
 }
 
-fun ICurl.addChecksum(address: String): String {
+internal fun <T> ICurl.curl(operation: () -> T): T {
     reset()
+    return operation()
+}
+
+fun ICurl.addChecksum(address: String) = curl {
     absorb(address.toTrits())
     val checksumTrits = TritArray(HASH_LENGTH)
     squeeze(checksumTrits)
 
-    return buildString {
+    buildString {
         append(address)
         append(checksumTrits.toTrytes().substring(72, 81))
     }
@@ -48,9 +52,10 @@ fun ICurl.digest(key: TritArray, level: SecurityLevel): TritArray {
             }
         }
 
-        reset()
-        absorb(keyFragment, 0, keyFragment.size)
-        squeeze(digests, i * HASH_LENGTH, HASH_LENGTH)
+        curl {
+            absorb(keyFragment, 0, keyFragment.size)
+            squeeze(digests, i * HASH_LENGTH, HASH_LENGTH)
+        }
     }
 
     return digests
