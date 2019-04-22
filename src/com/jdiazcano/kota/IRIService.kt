@@ -62,9 +62,9 @@ class IotaService(
             seed: Seed, security:
             SecurityLevel,
             checksum: Boolean,
-            index: Int,
-            amount: Long,
-            addSpendAddresses: Boolean
+            index: Int = 0,
+            amount: Long = 1,
+            addSpendAddresses: Boolean = false
     ): GetNewAddressResponse {
         if (index + amount < 0) {
             throw IllegalArgumentException("Balance would be less than 0.")
@@ -76,7 +76,6 @@ class IotaService(
             var i = index
             var numUnspentFound = 0
             while (numUnspentFound < amount) {
-// "MJAMSHGHEMJESTTOIZGL9JMAFPGHPORRKQPSBWAXKNY9AUALC9LPE9CXEUFSTYFYPPTVXJDBZBDRUMKTDKBMIIRVJA"
                 val newAddress = kerl.generateAddress(seed, security, i, checksum)
                 val response = findTransactions(IotaFindTransactionsRequest(
                         listOf(if (checksum) newAddress.removeChecksum() else newAddress)
