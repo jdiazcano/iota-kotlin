@@ -3,16 +3,13 @@ package com.jdiazcano.kota.utils
 import com.jdiazcano.kota.model.SecurityLevel
 import com.jdiazcano.kota.model.TritArray
 import com.jdiazcano.kota.model.inc
-import com.jdiazcano.kota.model.next
 import com.jdiazcano.kota.pow.JCurl.HASH_LENGTH
 import com.jdiazcano.kota.pow.SpongeMode
 import com.jdiazcano.kota.pow.create
 
 fun IntArray.subseed(index: Int): IntArray {
     return clone().apply {
-        for (i in 0 until index) {
-            inc()
-        }
+        index.timesDo { inc() }
     }
 }
 
@@ -30,11 +27,10 @@ fun TritArray.key(index: Int, securityLevel: SecurityLevel): TritArray {
     val buffer = IntArray(seed.size)
     var offset = 0
 
-    for (sec in 0 until securityLevel) {
-        for (i in 0 until 27) {
+    securityLevel.timesDo {
+        27.timesDo {
             curl.squeeze(buffer, 0, seed.size)
-            System.arraycopy(buffer, 0, key, offset, HASH_LENGTH)
-//            buffer.copyInto(key, 0, offset, HASH_LENGTH_TRITS)
+            buffer.copyInto(key, offset, 0, HASH_LENGTH)
 
             offset += HASH_LENGTH
         }

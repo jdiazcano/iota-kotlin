@@ -17,8 +17,8 @@ class TryteTest: StringSpec({
         "TBYBCCKBEATBYBCCKB".fromTryes() shouldBe "JOTA JOTA"
     }
 
-    "converts back and forth" {
-        assertAll(500) { str: String ->
+    assertAll(500) { str: String ->
+        "converts back and forth: $str" {
             str.toTrytes().fromTryes() shouldBe str
         }
     }

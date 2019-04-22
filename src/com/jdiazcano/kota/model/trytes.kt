@@ -89,6 +89,7 @@ fun TritArray.toTrytes(offset: Int = 0, tritsSize: Int = size): String {
     }
 }
 
+// TODO no need for regex on this
 fun String.isTrytes(length: Int = this.length): Boolean {
     return matches(("^[A-Z9]{" + (if (length == 0) "0," else length) + "}$").toRegex())
 }

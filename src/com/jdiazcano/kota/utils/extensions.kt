@@ -5,3 +5,6 @@ fun Int.timesDo(operation: () -> Unit) {
         operation()
     }
 }
+
+fun <T> T.cast(type: String, validation: (T) -> Boolean) =
+        if (validation(this)) this else throw IllegalArgumentException("Invalid $type: $this")
