@@ -38,8 +38,8 @@ data class Transfer(
 )
 
 data class Transaction(
-        val hash: String,
-        val address: String,
+        val hash: Hash,
+        val address: Address,
         val value: Long,
         val obsoleteTag: String,
         val timestamp: Long,

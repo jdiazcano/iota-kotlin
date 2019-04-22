@@ -15,4 +15,4 @@ private fun isValidAddress(address: String): Boolean {
     }
 }
 
-fun Address.removeChecksum(): Address = substring(0, ADDRESS_LENGTH_WITHOUT_CHECKSUM).toAddress()
+fun Address.removeChecksum(): Address = substring(0, ADDRESS_LENGTH_WITHOUT_CHECKSUM)

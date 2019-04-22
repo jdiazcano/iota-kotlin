@@ -1,6 +1,9 @@
 package com.jdiazcano.kota.model
 
 import com.jdiazcano.kota.utils.TRYTE_ALPHABET
+import com.jdiazcano.kota.utils.timesDoIndexed
+import kotlin.math.absoluteValue
+import kotlin.math.min
 
 typealias Trit = Int
 
@@ -52,6 +55,37 @@ fun TritArray.inc() {
             break
         }
     }
+}
+
+fun List<Int>.toTritArray(desiredLength: Int = size): TritArray {
+    val array = TritArray(desiredLength)
+    min(desiredLength, size).timesDoIndexed { index -> array[index] = get(index) }
+    return array
+}
+
+fun Long.toTrits(arrayLength: Int): TritArray {
+    val trits = arrayListOf<Int>()
+    var absoluteValue = absoluteValue
+
+    var position = 0
+
+    while (absoluteValue > 0) {
+        var remainder = (absoluteValue % RADIX).toInt()
+        absoluteValue /= RADIX.toLong()
+
+        if (remainder > MAX_TRIT_VALUE) {
+            remainder = MIN_TRIT_VALUE
+            absoluteValue++
+        }
+
+        trits.add(position++, remainder)
+    }
+    if (this < 0) {
+        for (i in trits.indices) {
+            trits[i] = -trits[i]
+        }
+    }
+    return trits.toTritArray(arrayLength)
 }
 
 fun String.toTrits(): TritArray {

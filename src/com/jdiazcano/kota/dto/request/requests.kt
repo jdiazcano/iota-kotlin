@@ -47,7 +47,7 @@ data class IotaGetInclusionStateRequest(
 
 data class IotaGetTransactionsToApproveRequest(
         val depth: Int,
-        val reference: String
+        val reference: String? = null
 ): IotaCommandRequest {
     override val command = IotaAPICommand.GET_TRANSACTIONS_TO_APPROVE
 }

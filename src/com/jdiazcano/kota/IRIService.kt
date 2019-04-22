@@ -37,6 +37,7 @@ class IotaService(
     private val kerl = SpongeMode.KERL.create()
 
     private val client = HttpClient(CIO) {
+        expectSuccess = false
         defaultRequest {
             url {
                 protocol = config.protocol
@@ -47,7 +48,7 @@ class IotaService(
 
             header("Content-Type", "application/json")
             header("X-IOTA-API-Version", "1.0")
-            header("User-Agent", "KOTA-API wrapper")
+//            header("User-Agent", "KOTA-API wrapper")
         }
         install(Logging) {
             logger = Logger.DEFAULT
