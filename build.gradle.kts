@@ -10,7 +10,6 @@ plugins {
 
 group = "com.jdiazcano"
 version = "1.0-SNAPSHOT"
-val mainClass = ""
 
 repositories {
     mavenCentral()
@@ -61,9 +60,13 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
 
+    systemProperties = mapOf(
+            "kotlintest.tags.exclude" to "Integration"
+    )
+
     testLogging {
         // set options for log level LIFECYCLE
-        events = setOf(FAILED, PASSED, SKIPPED, STANDARD_OUT)
+        events = setOf(FAILED, PASSED, /*SKIPPED, */STANDARD_OUT)
         exceptionFormat = TestExceptionFormat.FULL
         showExceptions = true
         showCauses = true
@@ -71,13 +74,9 @@ tasks.withType<Test> {
     }
 }
 
-
-val fatJar = task("fatJar", type = Jar::class) {
-    baseName = "${project.name}-fat"
-    manifest {
-        attributes["Implementation-Version"] = version
-        attributes["Main-Class"] = mainClass
-    }
-    from(configurations.runtime.map { if (it.isDirectory) it else zipTree(it) })
-    with(tasks["jar"] as CopySpec)
+val integrationTests = task("integrationTests", type = Test::class) {
+    systemProperties = mapOf(
+            "kotlintest.tags.include" to "Integration",
+            "kotlintest.tags.exclude" to ""
+    )
 }

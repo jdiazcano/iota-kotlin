@@ -1,6 +1,8 @@
 package com.jdiazcano.kota.dto.request
 
 import com.jdiazcano.kota.IotaAPICommand
+import com.jdiazcano.kota.model.Address
+import com.jdiazcano.kota.model.Tag
 
 interface IotaCommandRequest {
     val command: IotaAPICommand
@@ -22,9 +24,9 @@ data class IotaCheckConsistencyRequest(val tails: List<String>): IotaCommandRequ
 }
 
 data class IotaFindTransactionsRequest(
-        val addresses: List<String>,
+        val addresses: List<Address>? = null,
         val bundles: List<String>? = null,
-        val tags: List<String>? = null,
+        val tags: List<Tag>? = null,
         val approvees: List<String>? = null
 ): IotaCommandRequest {
     override val command = IotaAPICommand.FIND_TRANSACTIONS
@@ -38,8 +40,7 @@ data class IotaGetBalancesRequest(
 }
 
 data class IotaGetInclusionStateRequest(
-        val addresses: List<String>,
-        val threshold: Int,
+        val transactions: List<String>,
         val tips: List<String>
 ): IotaCommandRequest {
     override val command = IotaAPICommand.GET_INCLUSIONS_STATES

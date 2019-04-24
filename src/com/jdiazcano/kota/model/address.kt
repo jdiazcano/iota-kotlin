@@ -15,4 +15,9 @@ private fun isValidAddress(address: String): Boolean {
     }
 }
 
-fun Address.removeChecksum(): Address = substring(0, ADDRESS_LENGTH_WITHOUT_CHECKSUM)
+fun Address.removeChecksum(): Address =
+        if (length == ADDRESS_LENGTH_WITHOUT_CHECKSUM) {
+            this
+        } else {
+            substring(0, ADDRESS_LENGTH_WITHOUT_CHECKSUM)
+        }

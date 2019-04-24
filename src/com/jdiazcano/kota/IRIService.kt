@@ -2,9 +2,7 @@ package com.jdiazcano.kota
 
 import com.jdiazcano.kota.dto.request.*
 import com.jdiazcano.kota.dto.response.*
-import com.jdiazcano.kota.model.SecurityLevel
-import com.jdiazcano.kota.model.Seed
-import com.jdiazcano.kota.model.removeChecksum
+import com.jdiazcano.kota.model.*
 import com.jdiazcano.kota.pow.SpongeMode
 import com.jdiazcano.kota.pow.create
 import com.jdiazcano.kota.utils.generateAddress
@@ -149,3 +147,15 @@ class IotaService(
             client.post<WereAddressesSpentFromResponse> { body = request }
 
 }
+
+suspend fun IotaService.findTransactionsByAddress(addresses: List<Address>) =
+        findTransactions(IotaFindTransactionsRequest(addresses = addresses.map { it.removeChecksum() }))
+
+suspend fun IotaService.findTransactionsByTag(tags: List<Tag>) =
+        findTransactions(IotaFindTransactionsRequest(tags = tags))
+
+suspend fun IotaService.findTransactionsByApprovee(approvees: List<String>) =
+        findTransactions(IotaFindTransactionsRequest(approvees = approvees))
+
+suspend fun IotaService.findTransactionsByBundle(bundles: List<String>) =
+        findTransactions(IotaFindTransactionsRequest(bundles = bundles))
